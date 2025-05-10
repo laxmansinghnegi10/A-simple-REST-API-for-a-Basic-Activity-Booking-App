@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "53c9a6c3-94f8-4a9b-b8a3-db6d842d4b9c",
+		"name": "Activity Booking API",
+		"description": "A Postman collection for testing the Activity Booking API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"phone\": \"1234567890\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "https://activity-booking-app-0b52.onrender.com/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						},
+						"description": "Register a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "https://activity-booking-app-0b52.onrender.com/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						},
+						"description": "Login with email and password"
+					},
+					"response": []
+				}
+			],
+			"description": "User authentication endpoints"
+		},
+		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "Get All Activities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://activity-booking-app-0b52.onrender.com/api/activities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"activities"
+							]
+						},
+						"description": "Get all activities (public endpoint)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Activity by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://activity-booking-app-0b52.onrender.com/api/activities/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"activities",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{activity_id}}",
+									"description": "Activity ID"
+								}
+							]
+						},
+						"description": "Get a single activity by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Activity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"RCB VS KKR\",\n  \"description\": \"Join us for IPL final on 25 may for RCB vs KKR\",\n  \"location\": \"TV or  OTT\",\n  \"dateTime\": \"2023-06-10T10:00:00.000Z\"\n}"
+						},
+						"url": {
+							"raw": "https://activity-booking-app-0b52.onrender.com/api/activities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"activities"
+							]
+						},
+						"description": "Create a new activity (protected endpoint)"
+					},
+					"response": []
+				}
+			],
+			"description": "Activity related endpoints"
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Book an Activity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"activityId\": \"{{activity_id}}\"\n}"
+						},
+						"url": {
+							"raw": "https://activity-booking-app-0b52.onrender.com/api/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"bookings"
+							]
+						},
+						"description": "Book an activity (protected endpoint)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://activity-booking-app-0b52.onrender.com/api/bookings/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"bookings",
+								"me"
+							]
+						},
+						"description": "Get logged in user's bookings (protected endpoint)"
+					},
+					"response": []
+				}
+			],
+			"description": "Booking related endpoints"
+		},
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://activity-booking-app-0b52.onrender.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000"
+				},
+				"description": "API Home endpoint with documentation"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Auto-extract auth token from login response",
+					"if (pm.response.code === 200 && pm.info.requestName === \"Login User\") {",
+					"    const jsonResponse = pm.response.json();",
+					"    if (jsonResponse.success && jsonResponse.user && jsonResponse.user.token) {",
+					"        pm.environment.set(\"auth_token\", jsonResponse.user.token);",
+					"        console.log(\"Auth token saved to environment\");",
+					"    }",
+					"}",
+					"",
+					"// Auto-extract activity ID from create activity response",
+					"if (pm.response.code === 201 && pm.info.requestName === \"Create Activity\") {",
+					"    const jsonResponse = pm.response.json();",
+					"    if (jsonResponse.success && jsonResponse.data && jsonResponse.data._id) {",
+					"        pm.environment.set(\"activity_id\", jsonResponse.data._id);",
+					"        console.log(\"Activity ID saved to environment\");",
+					"    }",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "auth_token",
+			"value": ""
+		},
+		{
+			"key": "activity_id",
+			"value": ""
+		}
+	]
+} 
