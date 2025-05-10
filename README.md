@@ -4,7 +4,7 @@ A simple REST API for a Basic Activity Booking App
 
 ## Repository
 
-- GitHub: [https://github.com/RahulK847/activity-booking-app](https://github.com/RahulK847/activity-booking-app.git)
+- GitHub: [https://github.com/laxmansinghnegi10/A-simple-REST-API-for-a-Basic-Activity-Booking-App]
 
 ## Live Demo
 
@@ -95,8 +95,4 @@ A simple REST API for a Basic Activity Booking App
 | Book an Activity | `https://activity-booking-app-0b52.onrender.com/api/bookings` |
 | Get My Bookings | `https://activity-booking-app-0b52.onrender.com/api/bookings/me` |
 
----
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
